@@ -3,7 +3,7 @@
   "displayName": "GitGuide",
   "description": "A smart Git assistant for VS Code and Cursor that helps you follow good Git practices",
   "version": "1.0.1",
-  "publisher": "Mohammed Abdessetar Elyagoubi",
+  "publisher": "Mohammed-Abdessetar-Elyagoubi",
   "private": true,
   "license": "MIT",
   "repository": {
@@ -13,6 +13,7 @@
   "engines": {
     "vscode": "^1.74.0"
   },
+  "icon": "images/icon.png",
   "extensionKind": ["ui", "workspace"],
   "capabilities": {
     "virtualWorkspaces": true,
@@ -22,7 +23,6 @@
   },
   "categories": [
     "Other",
-    "Git",
     "SCM Providers"
   ],
   "keywords": [
