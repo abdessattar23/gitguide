@@ -1,0 +1,151 @@
+{
+  "name": "gitguide",
+  "displayName": "GitGuide",
+  "description": "A smart Git assistant for VS Code and Cursor that helps you follow good Git practices",
+  "version": "1.0.1",
+  "publisher": "Mohammed Abdessetar Elyagoubi",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abdessattar23/gitguide"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "extensionKind": ["ui", "workspace"],
+  "capabilities": {
+    "virtualWorkspaces": true,
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  },
+  "categories": [
+    "Other",
+    "Git",
+    "SCM Providers"
+  ],
+  "keywords": [
+    "git",
+    "version-control",
+    "workflow",
+    "productivity",
+    "cursor",
+    "vscode"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:gitguide.undoLastCommit",
+    "onCommand:gitguide.applyLastStash",
+    "onCommand:gitguide.createFeatureBranch"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "gitguide.undoLastCommit",
+        "title": "GitGuide: Undo Last Commit",
+        "category": "GitGuide"
+      },
+      {
+        "command": "gitguide.applyLastStash",
+        "title": "GitGuide: Apply Last Stash",
+        "category": "GitGuide"
+      },
+      {
+        "command": "gitguide.createFeatureBranch",
+        "title": "GitGuide: Create Feature Branch",
+        "category": "GitGuide"
+      }
+    ],
+    "configuration": {
+      "title": "GitGuide",
+      "properties": {
+        "gitguide.commitReminderInterval": {
+          "type": "number",
+          "default": 15,
+          "description": "Minutes before reminding to commit",
+          "minimum": 1,
+          "maximum": 120
+        },
+        "gitguide.maxFileChangesBeforeReminder": {
+          "type": "number",
+          "default": 5,
+          "description": "Number of changes before prompting to commit",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "gitguide.autoBranchOnMain": {
+          "type": "boolean",
+          "default": true,
+          "description": "Prompt to create a branch when on main/master"
+        },
+        "gitguide.autoSnapshotInterval": {
+          "type": "number",
+          "default": 10,
+          "description": "Minutes between auto-backups using git stash",
+          "minimum": 1,
+          "maximum": 120
+        },
+        "gitguide.useCommitMessages": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable commit message prompts"
+        },
+        "gitguide.undoEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable undo functionality"
+        }
+      }
+    },
+    "menus": {
+      "scm/title": [
+        {
+          "when": "scmProvider == git",
+          "command": "gitguide.createFeatureBranch",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "gitguide.undoLastCommit",
+          "when": "gitOpenRepositoryCount != 0"
+        },
+        {
+          "command": "gitguide.applyLastStash",
+          "when": "gitOpenRepositoryCount != 0"
+        },
+        {
+          "command": "gitguide.createFeatureBranch",
+          "when": "gitOpenRepositoryCount != 0"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "eslint": "^8.54.0",
+    "glob": "^7.2.0",
+    "minimatch": "^3.1.2",
+    "mocha": "^10.2.0",
+    "typescript": "^5.3.2",
+    "@vscode/test-electron": "^2.3.8",
+    "@vscode/vsce": "^2.24.0"
+  }
+  
+} 
