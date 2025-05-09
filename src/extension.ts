@@ -137,7 +137,24 @@ function StartBackupTimer() {
             if (response === 'Yes') {
                 outputChannel.appendLine('User chose to create snapshot');
                 try {
-                    await repo.stash();
+                    const { exec } = require('child_process');
+                    const workspacePath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+                    if (!workspacePath) {
+                        throw new Error('No workspace folder found');
+                    }
+
+                    await new Promise((resolve, reject) => {
+                        exec('git stash save "GitGuide auto-snapshot"', { cwd: workspacePath }, (error: any) => {
+                            if (error) {
+                                outputChannel.appendLine(`Git stash error: ${error.message}`);
+                                reject(error);
+                            } else {
+                                outputChannel.appendLine('Git stash command executed successfully');
+                                resolve(undefined);
+                            }
+                        });
+                    });
+
                     outputChannel.appendLine('Snapshot created successfully');
                     vscode.window.showInformationMessage('Changes have been stashed successfully.');
                 } catch (error) {

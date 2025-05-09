@@ -48,6 +48,11 @@ Initial release of GitGuide:
 - Auto snapshots
 - Undo functionality
 
+### 1.0.2
+
+Initial release of GitGuide:
+- Fixing the stash apply command
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
