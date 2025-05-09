@@ -39,7 +39,7 @@ None at the moment.
 
 ## Release Notes
 
-### 0.0.1
+### 1.0.1
 
 Initial release of GitGuide:
 - Basic Git integration
